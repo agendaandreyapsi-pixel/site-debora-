@@ -1,0 +1,1091 @@
+/* ==========================================================================
+   Débora Andrade Camargo da Silva — Psicologia Jurídica e Clínica (CRP 09/17439)
+   Estilos institucionais em CSS3 puro (Mobile-First, Flexbox/Grid, Variáveis CSS)
+   ========================================================================== */
+
+:root {
+  /* Paleta Institucional */
+  --color-primary: #1E3A4C;
+  --color-primary-hover: #162C3B;
+  --color-accent: #B5654D;
+  --color-accent-hover: #9E523C;
+  --color-bg-main: #FAF7F2;
+  --color-bg-alt: #EFE9E0;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #F5F0E8;
+  --color-text-main: #2B2D2F;
+  --color-text-secondary: #52585D;
+  --color-text-on-dark: #F7F4EE;
+  --color-text-on-dark-muted: rgba(247, 244, 238, 0.78);
+
+  /* Bordas e Divisores */
+  --color-border: rgba(30, 58, 76, 0.12);
+  --color-border-strong: rgba(30, 58, 76, 0.22);
+  --color-border-on-dark: rgba(247, 244, 238, 0.16);
+
+  /* Tipografia */
+  --font-serif: "Lora", Georgia, "Times New Roman", serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Forma, Elevação e Movimento */
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-soft: 0 12px 32px rgba(30, 58, 76, 0.06);
+  --shadow-card-hover: 0 18px 40px rgba(30, 58, 76, 0.1);
+  --shadow-header: 0 6px 24px rgba(30, 58, 76, 0.07);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 180ms var(--ease-smooth);
+  --transition-reveal: 520ms var(--ease-smooth);
+
+  /* Layout */
+  --container-max: 1160px;
+  --header-height: 76px;
+}
+
+/* Reset e Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 20px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--color-primary);
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+strong {
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+/* Acessibilidade: Foco Visível e Skip Link */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 16px;
+  z-index: 2000;
+  padding: 12px 18px;
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* Container e Ritmo de Seções */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.section {
+  padding-block: 68px;
+}
+
+.section-alt {
+  background-color: var(--color-bg-alt);
+}
+
+.section-divided {
+  border-top: 1px solid var(--color-border);
+}
+
+.section-header {
+  max-width: 680px;
+  margin-bottom: 40px;
+}
+
+.section-rule {
+  display: block;
+  width: 44px;
+  height: 2px;
+  margin-bottom: 18px;
+  background-color: var(--color-accent);
+}
+
+.section-title {
+  font-size: clamp(1.7rem, 2.8vw, 2.35rem);
+  line-height: 1.24;
+  letter-spacing: -0.015em;
+}
+
+.section-subtitle {
+  margin-top: 14px;
+  font-size: 1.03rem;
+  line-height: 1.68;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Botões
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 12px 24px;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  border-radius: var(--radius-md);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(158, 82, 60, 0.22);
+}
+
+.btn-petrol {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.btn-petrol:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(30, 58, 76, 0.2);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.btn-header {
+  min-height: 42px;
+  padding: 10px 18px;
+  font-size: 0.875rem;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+.btn-header:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Cabeçalho Fixo e Menu Mobile
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(250, 247, 242, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  transition: box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.site-header.is-scrolled {
+  background-color: rgba(250, 247, 242, 0.99);
+  box-shadow: var(--shadow-header);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 68px;
+  padding-block: 10px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--color-primary);
+  letter-spacing: -0.01em;
+}
+
+.brand-subtitle {
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.01em;
+}
+
+.menu-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background-color: transparent;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.menu-toggle:hover {
+  background-color: var(--color-bg-alt);
+}
+
+.menu-toggle-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Navegação Mobile (Dropdown limpo) */
+.main-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px 20px 24px;
+  background-color: var(--color-bg-main);
+  border-bottom: 1px solid var(--color-border-strong);
+  box-shadow: var(--shadow-header);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast),
+    visibility var(--transition-fast);
+}
+
+.main-nav.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link[aria-current="location"] {
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Dobra 1 — Hero
+   ========================================================================== */
+.hero {
+  padding-top: 40px;
+  padding-bottom: 64px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.hero-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.085em;
+  line-height: 1.45;
+  color: var(--color-accent);
+}
+
+.hero-kicker::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1.5px;
+  background-color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.hero-title {
+  font-size: clamp(1.95rem, 4.1vw, 3.1rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+}
+
+.hero-subtitle {
+  margin-top: 20px;
+  max-width: 60ch;
+  font-size: 1.04rem;
+  line-height: 1.72;
+  color: var(--color-text-secondary);
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.hero-media {
+  width: 100%;
+}
+
+/* Moldura de Imagem e Fallback Elegante */
+.media-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+}
+
+.media-frame-hero {
+  aspect-ratio: 3 / 2;
+  max-width: 580px;
+  margin-inline: auto;
+}
+
+.media-frame-oab {
+  aspect-ratio: 4 / 5;
+}
+
+.media-frame-award {
+  aspect-ratio: 7 / 8;
+}
+
+.media-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.media-frame-hero img {
+  object-position: center 22%;
+}
+
+.media-frame-award img {
+  object-position: center 20%;
+}
+
+.media-fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px;
+  text-align: center;
+  background: linear-gradient(145deg, #EAE2D6 0%, #F4EFE7 100%);
+  color: var(--color-primary);
+}
+
+.media-frame.is-missing img {
+  display: none;
+}
+
+.media-frame.is-missing .media-fallback {
+  display: flex;
+}
+
+.fallback-icon {
+  width: 36px;
+  height: 36px;
+  color: var(--color-primary);
+  opacity: 0.72;
+}
+
+.fallback-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.fallback-caption {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Dobra 2 — O Ponto Crítico dos Processos
+   ========================================================================== */
+.problem-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.problem-text {
+  max-width: 66ch;
+  font-size: 1.08rem;
+  line-height: 1.78;
+  color: var(--color-text-main);
+}
+
+/* ==========================================================================
+   Dobra 3 — Como Posso Ajudar (Frentes de Atuação)
+   ========================================================================== */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.service-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.service-card-ethical {
+  border-color: rgba(30, 58, 76, 0.24);
+  background-color: #FFFFFF;
+}
+
+.service-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.service-index {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.service-seal {
+  font-size: 0.825rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+}
+
+.service-seal-highlight {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background-color: rgba(30, 58, 76, 0.06);
+  color: var(--color-primary);
+}
+
+.seal-icon {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.service-title {
+  font-size: 1.32rem;
+  line-height: 1.32;
+  color: var(--color-primary);
+}
+
+.service-description {
+  margin-top: 12px;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Dobra 4 — Áreas de Foco (Áreas de Especialidade)
+   ========================================================================== */
+.focus-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.focus-item {
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.focus-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 18px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-alt);
+  color: var(--color-primary);
+}
+
+.focus-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.focus-title {
+  font-size: 1.3rem;
+  line-height: 1.3;
+  color: var(--color-primary);
+}
+
+.focus-description {
+  margin-top: 10px;
+  font-size: 0.96rem;
+  line-height: 1.72;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Dobra 5 — Trajetória e Credibilidade
+   ========================================================================== */
+.trajectory-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 44px;
+  align-items: start;
+}
+
+.trajectory-prose {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 24px;
+  max-width: 60ch;
+  font-size: 1.02rem;
+  line-height: 1.76;
+  color: var(--color-text-main);
+}
+
+.trajectory-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.editorial-figure {
+  margin: 0;
+}
+
+.editorial-caption {
+  margin-top: 10px;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Dobra 6 — Contato e Triagem Inteligente
+   ========================================================================== */
+.triage-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+.triage-card {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.triage-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.triage-card-featured {
+  border-color: rgba(181, 101, 77, 0.34);
+}
+
+.triage-title {
+  font-size: 1.3rem;
+  line-height: 1.32;
+  color: var(--color-primary);
+}
+
+.triage-description {
+  margin-top: 12px;
+  margin-bottom: 26px;
+  font-size: 0.96rem;
+  line-height: 1.68;
+  color: var(--color-text-secondary);
+  flex-grow: 1;
+}
+
+.location-panel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 36px;
+  padding: 24px;
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.location-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.location-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.location-value {
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: var(--color-text-main);
+}
+
+.location-divider {
+  height: 1px;
+  background-color: var(--color-border-strong);
+}
+
+/* ==========================================================================
+   Rodapé
+   ========================================================================== */
+.site-footer {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+  padding-block: 52px 40px;
+  letter-spacing: 0.008em;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.footer-identity {
+  max-width: 760px;
+}
+
+.footer-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-text-on-dark);
+}
+
+.footer-ethical-note {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-text-on-dark-muted);
+  font-style: italic;
+}
+
+.footer-bottom {
+  padding-top: 22px;
+  border-top: 1px solid var(--color-border-on-dark);
+}
+
+.footer-copyright {
+  font-size: 0.84rem;
+  color: var(--color-text-on-dark-muted);
+}
+
+/* ==========================================================================
+   Animações Suaves de Entrada (Progressivas e Acessíveis)
+   ========================================================================== */
+.js-enabled [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--transition-reveal),
+    transform var(--transition-reveal);
+}
+
+.js-enabled [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js-enabled [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   Responsividade — Tablet (>= 640px)
+   ========================================================================== */
+@media (min-width: 640px) {
+  .container {
+    padding-inline: 28px;
+  }
+
+  .hero-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hero-actions .btn {
+    white-space: nowrap;
+  }
+
+  .trajectory-gallery {
+    grid-template-columns: 1.12fr 0.88fr;
+    align-items: start;
+    gap: 20px;
+  }
+
+  .location-panel {
+    grid-template-columns: minmax(0, 0.72fr) 1px minmax(0, 1.28fr);
+    align-items: center;
+    gap: 28px;
+    padding: 26px 32px;
+  }
+
+  .location-divider {
+    width: 1px;
+    height: 100%;
+    min-height: 44px;
+  }
+}
+
+/* ==========================================================================
+   Responsividade — Desktop (>= 1024px)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: 36px;
+  }
+
+  .section {
+    padding-block: 96px;
+  }
+
+  .header-inner {
+    min-height: var(--header-height);
+    gap: 32px;
+  }
+
+  .brand-name {
+    font-size: 1.35rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.76rem;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 28px;
+    padding: 0;
+    background-color: transparent;
+    border-bottom: none;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-link {
+    min-height: auto;
+    padding-block: 6px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1.5px;
+    background-color: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--transition-fast);
+  }
+
+  .nav-link:hover::after,
+  .nav-link[aria-current="location"]::after {
+    transform: scaleX(1);
+  }
+
+  /* Hero 2 colunas */
+  .hero {
+    padding-top: 64px;
+    padding-bottom: 92px;
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+    gap: 52px;
+  }
+
+  .media-frame-hero {
+    max-width: 100%;
+    margin-inline: 0;
+  }
+
+  /* Dobra 2 — Editorial Assimétrica */
+  .problem-layout {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* Dobra 3 — 3 Cards em Grid */
+  .services-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+  }
+
+  .service-card {
+    padding: 32px 28px;
+  }
+
+  /* Dobra 4 — 3 Colunas Limpas */
+  .focus-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px;
+  }
+
+  /* Dobra 5 — Trajetória e Composição Visual Assimétrica */
+  .trajectory-grid {
+    grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+    gap: 56px;
+    align-items: center;
+  }
+
+  .trajectory-gallery {
+    grid-template-columns: 1.12fr 0.88fr;
+    align-items: start;
+    gap: 22px;
+  }
+
+  .editorial-figure-primary {
+    width: 100%;
+  }
+
+  .editorial-figure-secondary {
+    width: 100%;
+    margin-top: 44px;
+  }
+
+  /* Dobra 6 — 3 Cards de Conversão */
+  .triage-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+  }
+
+  .triage-card {
+    padding: 32px 28px;
+  }
+
+  .section-header {
+    margin-bottom: 48px;
+  }
+}

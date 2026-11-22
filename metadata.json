@@ -1,0 +1,6 @@
+{
+  "name": "Débora Andrade — Psicologia Jurídica e Clínica",
+  "description": "Site institucional de Psicologia Jurídica e Clínica da psicóloga Débora Andrade Camargo da Silva (CRP 09/17439), com atendimento presencial em Goiânia e online para todo o Brasil.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
